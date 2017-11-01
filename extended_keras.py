@@ -153,9 +153,9 @@ class VisualisationCallback(keras.callbacks.Callback):
                 f.ax_joint.fill_between(np.linspace(x0, x1, 10), mu_T[k] - 2 * std_T[k], mu_T[k] + 2 * std_T[k],
                                         color='red', alpha=0.1)
         score = \
-            self.model.evaluate({'input': self.X_test, }, {"error_loss": self.Y_test, "complexity_loss": self.Y_test, },
-                                verbose=0)[3]
-        sns.plt.title("Epoch: %d /%d\nTest accuracy: %.4f " % (epoch, self.epochs, score))
+            self.model.evaluate({'input': self.X_test, }, {"dense_2": self.Y_test, "complexity_loss": self.Y_test, },
+                                verbose=0)[0]
+        plt.title("Epoch: %d /%d\nTest accuracy: %.4f " % (epoch, self.epochs, score))
         f.ax_marg_y.set_xscale("log")
         f.set_axis_labels("Pretrained", "Retrained")
         f.ax_marg_x.set_xlim(-1, 1)
